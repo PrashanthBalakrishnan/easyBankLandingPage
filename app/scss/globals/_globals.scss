@@ -1,0 +1,175 @@
+@use '../util' as u;
+
+html {
+  font-size: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Public Sans', sans-serif;
+  line-height: 1.3;
+  font-size: u.$font-med;
+  font-weight: 300;
+  color: u.$grayishBlue;
+  min-height: 200vh;
+  overflow-x: hidden;
+  @include u.breakpoints(large) {
+    font-size: u.$font-med;
+  }
+
+  &.noscroll {
+    overflow: hidden;
+  }
+}
+//tex
+h1,
+h2,
+h3 {
+  margin-top: 0;
+  font-weight: 300;
+  color: u.$darkBlue;
+}
+h1 {
+  font-size: u.rem(37);
+  margin-bottom: u.rem(24);
+  @include u.breakpoints(large) {
+    font-size: u.$font-xlg;
+  }
+}
+
+h2 {
+  font-size: 1.875rem;
+  margin-bottom: u.rem(25);
+
+  @include u.breakpoints(medium) {
+    font-size: 2.25rem;
+    margin-bottom: u.rem(36);
+  }
+}
+
+p {
+  line-height: 1.5;
+  margin-bottom: u.rem(36);
+}
+
+a,
+a:visited,
+a:hover {
+  text-decoration: none;
+}
+//spacing
+.container {
+  max-width: u.rem(1110);
+  margin: 0 auto;
+
+  &--pall {
+    padding-top: u.rem(70);
+    padding-bottom: u.rem(70);
+    padding-right: u.rem(24);
+    padding-left: u.rem(24);
+    @include u.breakpoints(large) {
+      padding-top: u.rem(96);
+      padding-bottom: u.rem(96);
+    }
+  }
+
+  &--py {
+    padding-top: u.rem(36);
+    padding-bottom: u.rem(36);
+    @include u.breakpoints(large) {
+      padding-top: u.rem(96);
+      padding-bottom: u.rem(96);
+    }
+  }
+  &--px {
+    padding-right: u.rem(24);
+    padding-left: u.rem(24);
+  }
+  &--pt {
+    padding-top: u.rem(36);
+    @include u.breakpoints(large) {
+      padding-top: u.rem(96);
+    }
+  }
+  &--pr {
+    padding-right: u.rem(24);
+  }
+  &--pb {
+    padding-bottom: u.rem(36);
+    @include u.breakpoints(large) {
+      padding-bottom: u.rem(96);
+    }
+  }
+  &--pl {
+    padding-left: u.rem(24);
+  }
+}
+//flexbox styles
+.flex {
+  display: flex;
+
+  &-jc-sb {
+    justify-content: space-between;
+  }
+
+  &-jc-c {
+    justify-content: center;
+  }
+
+  &-ai-c {
+    align-items: center;
+  }
+}
+
+//Buttons
+.button,
+button {
+  position: relative;
+  display: inline-block;
+  padding: 0.875rem 2.1875rem;
+  background-image: linear-gradient(to left, u.$brightGreen, u.$limeGreen);
+  border-radius: 50px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-weight: 400;
+  font-size: u.$font-sm;
+  transition: opacity 300ms ease-in-out;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.25);
+    opacity: 0;
+    transition: opacity 150ms ease-in-out;
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+//visibility
+.hide-for-mobile {
+  @include u.breakpoints-down(medium) {
+    display: none;
+  }
+}
+
+.hide-for-desktop {
+  @include u.breakpoints(large) {
+    display: none;
+  }
+}

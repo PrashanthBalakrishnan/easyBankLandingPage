@@ -1,0 +1,106 @@
+@use './util' as u;
+.header {
+  position: relative;
+  z-index: 1;
+
+  // hamburger
+  &.open {
+    .header__toggle {
+      > span:first-child {
+        transform: rotate(45deg);
+      }
+
+      > span:nth-child(2) {
+        opacity: 0;
+      }
+
+      > span:last-child {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+  .overlay {
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-image: linear-gradient(u.$darkBlue, transparent);
+  }
+
+  nav {
+    position: relative;
+    background-color: #fff;
+    padding-top: u.rem(17);
+    padding-bottom: u.rem(17);
+  }
+
+  &__logo {
+    img {
+      width: u.rem(141);
+      height: u.rem(22);
+    }
+  }
+
+  &__toggle {
+    > span {
+      display: block;
+      width: u.rem(26);
+      height: u.rem(2);
+      background-color: u.$darkBlue;
+      transition: all 300ms ease-in-out;
+      transform-origin: u.rem(3) u.rem(1);
+
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    width: calc(100% - 3rem);
+    left: 50%;
+    margin-top: u.rem(24);
+    transform: translateX(-50%);
+    padding: 1.625rem;
+    border-radius: u.rem(5);
+    background-color: #fff;
+    a {
+      display: block;
+      text-align: center;
+      padding: u.rem(10);
+      color: u.$darkBlue;
+    }
+  }
+  &__links {
+    a {
+      position: relative;
+      font-size: u.$font-sm;
+      color: u.$grayishBlue;
+      transition: color 300ms ease-in-out;
+      &:not(:last-child) {
+        margin-right: u.rem(32);
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        display: block;
+        height: u.rem(5);
+        left: 0;
+        right: 0;
+        bottom: -30px;
+        background: linear-gradient(to left, u.$brightGreen, u.$limeGreen);
+        opacity: 0;
+        transition: opacity 300ms ease-in-out;
+      }
+      &:hover {
+        color: u.$darkBlue;
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
